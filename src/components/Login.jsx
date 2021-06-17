@@ -1,35 +1,38 @@
-import React, { forwardRef, useState } from "react"
-import { Button, Slide, Dialog, DialogActions, DialogContent, DialogTitle, TextField } from "@material-ui/core"
+import React, { useState } from 'react'
+import { Button, Dialog, DialogActions, DialogContent, DialogTitle, TextField } from '@material-ui/core'
+
+import { login } from '../services/userService'
 
 export default function Login() {
-    const Transition = forwardRef(function Transition(props, ref) {
-        return <Slide direction="up" ref={ref} {...props} />
-    })
-    const [open, setOpen] = useState(false);
+    const [open, setOpen] = useState(false)
+    const toggleOpen = () => { setOpen(!open) }
 
-    const toggleOpen = () => {
-        setOpen(!open)
+    const [form, setForm] = useState({ username: '', password: '' })
+    const handleInputChange = e => {
+        const { name, value } = e.target
+        setForm({ ...form, [name]: value })
+    }
+    const handleSubmit = async () => {
+        const response = await login(form)
+        console.log(response)
+        if (response) {
+            setForm({ username: '', password: '' })
+            toggleOpen()
+        } else {
+            console.log()
+        }
     }
     return (
         <>
-            <Button color="inherit" variant="outlined" onClick={toggleOpen}>Login</Button>
-            <Dialog
-                open={open}
-                TransitionComponent={Transition}
-                keepMounted
-                onClose={toggleOpen}
-                aria-labelledby="alert-dialog-slide-title"
-                aria-describedby="alert-dialog-slide-description"
-            >
-                <DialogTitle id="alert-dialog-slide-title">Login</DialogTitle>
+            <Button color='inherit' variant='outlined' onClick={toggleOpen}>Login</Button>
+            <Dialog open={open} keepMounted onClose={toggleOpen}>
+                <DialogTitle>Login</DialogTitle>
                 <DialogContent>
-                    <form>
-                        <TextField label="Username" />
-                        <TextField label="Password" />
-                    </form>
+                    <TextField name='username' label='Username' onChange={handleInputChange} />
+                    <TextField name='password' label='Password' onChange={handleInputChange} />
                 </DialogContent>
                 <DialogActions>
-                    <Button onClick={toggleOpen} color="primary">Login</Button>
+                    <Button color='primary' onClick={handleSubmit}>Login</Button>
                 </DialogActions>
             </Dialog>
         </>
