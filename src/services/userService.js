@@ -13,8 +13,8 @@ export const login = async user => {
     try {
         const response = await superagent.post(tokenUrl, username).set(headers)
         const { token } = response.body
-        console.log('token', token) // remove
         cookies.set('token', token)
+        console.log('token', token) // remove
         return true
     } catch (err) {
         console.log('error', err) // remove
