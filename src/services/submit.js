@@ -1,6 +1,6 @@
 import superagent from 'superagent'
 
-const url = '127.0.0.1:6000/upload' //'https://server.exozy.me'
+const url = 'https://server.exozy.me' // '127.0.0.1:6000/upload'
 
 export async function upload(files) {
     const uploadUrl = url + '/submission'
