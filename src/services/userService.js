@@ -1,17 +1,13 @@
 import superagent from 'superagent'
 import Cookies from 'universal-cookie'
 
-const url = 'https://server.exozy.me'
+const baseUrl = 'https://server.exozy.me' // 127.0.0.1:6000/upload
 const cookies = new Cookies()
 
-export const login = async user => {
-    const { username, password } = user
-    const base64String = Buffer.from(`${username}:${password}`, 'ascii').toString('base64')
-    console.log(username, password, base64String)
-    const headers = { Authorization: `Basic ${base64String}` }
-    const tokenUrl = url + '/token'
+export const register = async user => {
+    const url = baseUrl + '/register'
     try {
-        const response = await superagent.post(tokenUrl, username).set(headers)
+        const response = await superagent.post(url, user) // encrypt password before sending?
         const { token } = response.body
         cookies.set('token', token)
         console.log('token', token) // remove
@@ -20,4 +16,28 @@ export const login = async user => {
         console.log('error', err) // remove
     }
     return false
+}
+
+export const login = async user => {
+    const url = baseUrl + '/login'
+    const { username, password } = user
+    const base64String = Buffer.from(`${username}:${password}`, 'ascii').toString('base64')
+    console.log(user, base64String)
+    const headers = { Authorization: `Basic ${base64String}` }
+    try {
+        const response = await superagent.post(url, username).set(headers)
+        const { token } = response.body
+        cookies.set('token', token)
+        cookies.set('username', username)
+        console.log('token', token) // remove
+        return true
+    } catch (err) {
+        console.log('error', err) // remove
+    }
+    return false
+}
+
+export const logout = () => {
+    cookies.remove('username')
+    cookies.remove('token')
 }

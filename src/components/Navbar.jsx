@@ -1,9 +1,14 @@
-import React from 'react';
+import Cookies from "universal-cookie"
 import { makeStyles } from '@material-ui/core/styles';
 import { AppBar, Toolbar, Typography, IconButton } from '@material-ui/core'
 import MenuIcon from '@material-ui/icons/Menu'
 
-import Login from './Login'
+import DialogForm from './DialogForm'
+import Logout from './Logout'
+
+import { register, login } from '../services/userService'
+
+const cookies = new Cookies()
 
 const useStyles = makeStyles((theme) => ({
     title: {
@@ -22,7 +27,13 @@ export default function Navbar({ page, theme }) {
                 <Typography className={classes.title}>
                     {page}
                 </Typography>
-                <Login />
+                {cookies.get('username') ?
+                    <Logout /> :
+                    <>
+                        <DialogForm title="Register" action={register} fields={['username', 'password', 'confirm password']} />
+                        &nbsp;
+                        <DialogForm title="Login" action={login} fields={['username', 'password']} />
+                    </>}
             </Toolbar>
         </AppBar>
 
