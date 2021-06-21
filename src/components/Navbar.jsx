@@ -6,7 +6,7 @@ import MenuIcon from '@material-ui/icons/Menu'
 import DialogForm from './DialogForm'
 import Logout from './Logout'
 
-import { register, login } from '../services/userService'
+import { schema, register, login } from '../services/userService'
 
 const cookies = new Cookies()
 
@@ -30,9 +30,9 @@ export default function Navbar({ page, theme }) {
                 {cookies.get('username') ?
                     <Logout /> :
                     <>
-                        <DialogForm title="Register" action={register} fields={['username', 'password', 'confirm password']} />
+                        <DialogForm title="Register" action={register} fields={['username', 'password', 'confirm_password']} schema={schema.register} />
                         &nbsp;
-                        <DialogForm title="Login" action={login} fields={['username', 'password']} />
+                        <DialogForm title="Login" action={login} fields={['username', 'password']} schema={schema.login} />
                     </>}
             </Toolbar>
         </AppBar>

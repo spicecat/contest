@@ -1,8 +1,29 @@
 import superagent from 'superagent'
 import Cookies from 'universal-cookie'
+import { object, string, ref } from 'yup'
 
 const baseUrl = 'https://server.exozy.me' // 127.0.0.1:6000/upload
 const cookies = new Cookies()
+
+export const schema = {
+    register:
+        object({
+            username: string()
+                .required('Username is required'),
+            password: string()
+                .min(8, 'Password should be of minimum 8 characters length')
+                .required('Password is required'),
+            confirm_password: string()
+                .oneOf([ref('password'), null], 'Passwords must match')
+                .required('Password is required')
+        }),
+    login: object({
+        username: string()
+            .required('Username is required'),
+        password: string()
+            .required('Password is required')
+    })
+}
 
 export const register = async user => {
     const url = baseUrl + '/register'
