@@ -2,7 +2,7 @@
   "name": "test",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://spicecat.github.io/contest",
+  "homepage": "https://laduecs.github.io/contest",
   "dependencies": {
     "@material-ui/core": "^4.11.4",
     "@material-ui/icons": "^4.11.2",
@@ -49,6 +49,6 @@
     "gh-pages": "^3.2.1"
   },
   "devDependencies": {
-    "gh-pages": "^3.2.3"
+    "gh-pages": "^3.2.2"
   }
 }
