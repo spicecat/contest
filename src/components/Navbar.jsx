@@ -1,3 +1,4 @@
+import React from 'react'
 import Cookies from "universal-cookie"
 import { makeStyles } from '@material-ui/core/styles';
 import { AppBar, Toolbar, Typography, IconButton } from '@material-ui/core'

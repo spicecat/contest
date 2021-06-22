@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import React, { useState } from 'react'
 import { upperFirst } from 'lodash/string'
 import { zipObject } from 'lodash/array'
 import { useFormik } from 'formik'
@@ -31,10 +31,10 @@ export default function DialogForm({ title, action, fields, schema }) {
                         {fields.map(field =>
                             <TextField
                                 fullWidth
-                                key = {field}
+                                key={field}
                                 id={field}
                                 name={field}
-                                label={upperFirst(field.replaceAll('_',' '))}
+                                label={upperFirst(field.replaceAll('_', ' '))}
                                 value={formik.values[field]}
                                 onChange={formik.handleChange}
                                 error={formik.touched[field] && formik.errors[field]}
