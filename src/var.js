@@ -1,0 +1,1 @@
+export const serverUrl = 'http://localhost:7789' //'https://server.exozy.me'

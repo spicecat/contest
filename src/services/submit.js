@@ -1,15 +1,15 @@
 import superagent from 'superagent'
 
-const url = 'https://server.exozy.me' // '127.0.0.1:6000/upload'
+import { serverUrl } from '../var.js'
+
+const baseUrl = serverUrl
 
 export async function upload(files) {
-    const uploadUrl = url + '/submission'
-    console.log('files:', files)
+    const url = baseUrl + '/submit'
     try {
-        const response = await superagent.get(uploadUrl, files)
+        const data = { username: 'user1', token: 'token1', contest: 'con1', problem: 'prob1', lang: files.type, program: await files.text() }
+        const response = await superagent.post(url, data)
         console.log('res:', response)
-    } catch (err) {
-        console.log('error uploading files', err)
-        alert(err)
-    }
+        return response
+    } catch (err) { console.log('Error uploading files') }
 }
