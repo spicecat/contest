@@ -3,7 +3,8 @@ import { object, string, ref } from 'yup'
 export const registerSchema = object({
     username: string()
         .required('Username is required')
-        .min(4, 'Username should be of minimum 4 characters length'),
+        .min(4, 'Username should be of minimum 4 characters length')
+        .matches(/^[a-zA-Z0-9_]+$/, 'Username cannot contain special characters'),
     password: string()
         .min(8, 'Password should be of minimum 8 characters length')
         .required('Password is required'),

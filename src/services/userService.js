@@ -6,11 +6,11 @@ import { serverUrl } from '../var.js'
 const baseUrl = serverUrl + '/user'
 const cookies = new Cookies()
 
-export const register = async user => {
+export const register = async ({ username, password }) => {
     const url = baseUrl + '/register'
-    console.log(url, user) // remove
     try {
-        const response = await superagent.post(url, user) // encrypt password before sending?
+        const auth = Buffer.from(username + ':' + password, 'ascii').toString('base64')
+        const response = await superagent.post(url).set('Authorization', 'Basic', auth)
         const { token } = response.body
         cookies.set('token', token)
         console.log('token', token) // remove
@@ -18,14 +18,11 @@ export const register = async user => {
     } catch (err) { console.log('error', err) } // remove
 }
 
-export const login = async user => {
+export const login = async ({ username, password }) => {
     const url = baseUrl + '/login'
-    const { username, password } = user
-    const base64String = Buffer.from(`${username}:${password}`, 'ascii').toString('base64')
-    console.log(user, base64String)
-    const headers = { Authorization: `Basic ${base64String}` }
     try {
-        const response = await superagent.post(url, username).set(headers)
+        const auth = Buffer.from(username + ':' + password, 'ascii').toString('base64')
+        const response = await superagent.post(url).set('Authorization', 'Basic', auth)
         const { token } = response.body
         cookies.set('token', token)
         cookies.set('username', username)
