@@ -11,9 +11,8 @@ export const register = async ({ username, password }) => {
     try {
         const auth = Buffer.from(username + ':' + password, 'ascii').toString('base64')
         const response = await superagent.post(url).set('Authorization', 'Basic ' + auth)
-        const { token } = response.text
+        const token = response.text
         cookies.set('token', token)
-        console.log('token', token) // remove
         return true
     } catch (err) { console.log('error', err) } // remove
 }
@@ -23,10 +22,9 @@ export const login = async ({ username, password }) => {
     try {
         const auth = Buffer.from(username + ':' + password, 'ascii').toString('base64')
         const response = await superagent.get(url).set('Authorization', 'Basic ' + auth)
-        const { token } = response.text
+        const token = response.text
         cookies.set('token', token)
         cookies.set('username', username)
-        console.log('token', token) // remove
         return true
     } catch (err) { console.log('error', err) } // remove
 }
