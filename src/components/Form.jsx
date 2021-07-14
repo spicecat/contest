@@ -1,10 +1,10 @@
 import React from 'react'
 import { upperFirst } from 'lodash/string'
 import { useFormik } from 'formik'
-import { Button, TextField } from '@material-ui/core'
+import { Button, TextField, Typography } from '@material-ui/core'
 
 
-export default function Form({ name, action, schema, to }) {
+export default function Form({ name, action, schema }) {
     const fields = Object.keys(schema.fields)
     const formik = useFormik({
         initialValues: fields.reduce((o, i) => ({ ...o, [i]: "" }), {}),
@@ -14,6 +14,7 @@ export default function Form({ name, action, schema, to }) {
 
     return (
         <form onSubmit={formik.handleSubmit}>
+            <Typography>{name}</Typography>
             <div>
                 {fields.map(field =>
                     <TextField

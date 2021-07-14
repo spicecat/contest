@@ -11,7 +11,7 @@ const useStyles = makeStyles(theme => ({
     userControl: { marginLeft: 'auto' }
 }))
 
-export default function Navbar({ page, username, setUsername }) {
+export default function Navbar({ page, username }) {
     const classes = useStyles()
 
     return (

@@ -33,4 +33,5 @@ export const login = async ({ username, password }) => {
 export const logout = () => {
     cookies.remove('username')
     cookies.remove('token')
+    window.location.href = '/'
 }

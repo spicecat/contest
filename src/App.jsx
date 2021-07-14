@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { BrowserRouter, Switch, Route, Link } from "react-router-dom"
+import { BrowserRouter, Switch, Route } from "react-router-dom"
 import Cookies from 'universal-cookie'
 
 import './styles/App.css'
@@ -13,11 +13,10 @@ const cookies = new Cookies()
 
 export default function App() {
   const [page, setPage] = useState('Submit')
-  const [username, setUsername] = useState()
 
   return (
     <BrowserRouter>
-      <Navbar page={page} username={username} setUsername={setUsername} />
+      <Navbar page={page} username={cookies.get('username')} />
       <br />
       <Switch>
         <Route exact path="/submit">
@@ -27,7 +26,7 @@ export default function App() {
           <Login />
         </Route>
         <Route exact path="/register">
-          <Register updateState={setUsername} />
+          <Register />
         </Route>
         <Route exact path="/">
           <Submit /> {/* home page */}
