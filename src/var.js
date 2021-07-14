@@ -1,1 +1,1 @@
-export const serverUrl = 'http://localhost:6001'//'https://server.exozy.me'
+export const serverUrl = 'https://server.exozy.me'

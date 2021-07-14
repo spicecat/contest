@@ -4,7 +4,7 @@ import { register } from '../services/userService'
 import { registerSchema } from '../services/schemas'
 
 import Form from '../components/Form'
-import PaperContent from '../components/FormPaper'
+import PaperContent from '../components/Paper'
 
 export default function Register() {
     return (

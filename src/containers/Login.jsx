@@ -3,7 +3,7 @@ import { login } from '../services/userService'
 import { loginSchema } from '../services/schemas'
 
 import Form from '../components/Form'
-import PaperContent from '../components/FormPaper'
+import PaperContent from '../components/Paper'
 
 
 export default function Login() {
