@@ -13,8 +13,9 @@ export const register = async ({ username, password }) => {
         const response = await superagent.post(url).set('Authorization', 'Basic ' + auth)
         const token = response.text
         cookies.set('token', token)
-        return true
-    } catch (err) { console.log('error', err) } // remove
+        cookies.set('username', username)
+        return response.statusCode
+    } catch (err) { return err.status }
 }
 
 export const login = async ({ username, password }) => {
@@ -25,8 +26,8 @@ export const login = async ({ username, password }) => {
         const token = response.text
         cookies.set('token', token)
         cookies.set('username', username)
-        return true
-    } catch (err) { console.log('error', err) } // remove
+        return response.statusCode
+    } catch (err) { return err.status } // remove
 }
 
 export const logout = () => {

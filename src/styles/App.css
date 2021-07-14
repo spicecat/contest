@@ -1,4 +1,5 @@
 body {
     text-align: center;
     flex-grow: 1;
+    background-color: lightgray
 }

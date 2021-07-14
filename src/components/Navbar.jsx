@@ -1,23 +1,17 @@
 import React from 'react'
-import Cookies from 'universal-cookie'
-import { makeStyles } from '@material-ui/core/styles';
-import { AppBar, Toolbar, Typography, IconButton } from '@material-ui/core'
+import { Link } from "react-router-dom"
+import { makeStyles } from '@material-ui/core/styles'
+import { AppBar, Toolbar, Typography, IconButton, Button } from '@material-ui/core'
 import MenuIcon from '@material-ui/icons/Menu'
 
-import DialogForm from './DialogForm'
-import Logout from './Logout'
-
-import { register, login } from '../services/userService'
-import { registerSchema, loginSchema } from '../services/schemas'
-
-const cookies = new Cookies()
+import { logout } from '../services/userService'
 
 const useStyles = makeStyles(theme => ({
-    menuButton: { marginRight: theme.spacing(2), },
+    menuButton: { marginRight: theme.spacing(2) },
     userControl: { marginLeft: 'auto' }
 }))
 
-export default function Navbar({ page }) {
+export default function Navbar({ page, username, setUsername }) {
     const classes = useStyles()
 
     return (
@@ -26,18 +20,20 @@ export default function Navbar({ page }) {
                 <IconButton color='inherit' className={classes.menuButton}>
                     <MenuIcon />
                 </IconButton>
-                <Typography>
-                    {page}
-                </Typography>
-                <div className={classes.userControl}>
-                    {cookies.get('username') ?
-                        <Logout /> :
-                        <>
-                            <DialogForm name='Register' action={register} schema={registerSchema} />
-                            &nbsp;
-                            <DialogForm name='Login' action={login} schema={loginSchema} />
-                        </>}
-                </div>
+                &nbsp;
+                <Typography>{page}</Typography>
+                <span className={classes.userControl} />
+                {username ?
+                    <>
+                        <Typography>Logged in as: {username}</Typography>
+                        &nbsp;
+                        <Button color='inherit' variant='outlined' size='small' onClick={logout}>Logout</Button>
+                    </> :
+                    <>
+                        <Button color='inherit' variant='outlined' size='small' to='/register' component={Link}>Register</Button>
+                        &nbsp;
+                        <Button color='inherit' variant='outlined' size='small' to='/login' component={Link}>Login</Button>
+                    </>}
             </Toolbar>
         </AppBar >
 
