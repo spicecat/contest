@@ -1,1 +1,1 @@
-export const serverUrl = 'https://server.exozy.me'
+export const serverUrl = 'https://server.exozy.me:443'

@@ -22,7 +22,7 @@ export default function Form({ name, action, schema }) {
                         fullWidth
                         id={field}
                         name={field}
-                        label={upperFirst(field.replaceAll('_', ' '))}
+                        label={upperFirst(field.replace(/_/g, ' '))}
                         type={['password', 'confirm_password'].includes(field) ? 'password' : ''}
                         value={formik.values[field]}
                         onChange={formik.handleChange}
