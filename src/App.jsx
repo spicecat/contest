@@ -4,11 +4,8 @@ import { Paper } from '@material-ui/core'
 import Cookies from 'universal-cookie'
 
 import './styles/App.css'
-import Navbar from './components/Navbar'
 
-import Submit from './containers/Submit'
-import Login from './containers/Login'
-import Register from './containers/Register'
+import { Navbar, Register, Login, Contests, Submit } from './containers'
 
 const cookies = new Cookies()
 
@@ -21,17 +18,17 @@ export default function App() {
       <div className='body'>
         <Paper className='paper' elevation={5}>
           <Switch>
-            <Route exact path='/submit'>
-              <Submit />
+            <Route exact path='/register'>
+              <Register />
             </Route>
             <Route exact path='/login'>
               <Login />
             </Route>
-            <Route exact path='/register'>
-              <Register />
+            <Route exact path='/submit'>
+              <Submit />
             </Route>
             <Route exact path='/'>
-              <Submit /> {/* home page */}
+              <Contests />
             </Route>
             <Route>
               <Submit /> {/* page not found */}
