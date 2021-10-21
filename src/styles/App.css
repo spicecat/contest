@@ -3,3 +3,11 @@ body {
     flex-grow: 1;
     background-color: lightgray
 }
+
+div.body {
+    margin: 20px;
+}
+
+.paper {
+    padding: 15px;
+}

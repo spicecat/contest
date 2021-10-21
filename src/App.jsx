@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
-import { BrowserRouter, Switch, Route } from "react-router-dom"
+import { BrowserRouter, Switch, Route } from 'react-router-dom'
+import { Paper } from '@material-ui/core'
 import Cookies from 'universal-cookie'
 
 import './styles/App.css'
@@ -17,24 +18,27 @@ export default function App() {
   return (
     <BrowserRouter>
       <Navbar page={page} username={cookies.get('username')} />
-      <br />
-      <Switch>
-        <Route exact path="/submit">
-          <Submit />
-        </Route>
-        <Route exact path="/login">
-          <Login />
-        </Route>
-        <Route exact path="/register">
-          <Register />
-        </Route>
-        <Route exact path="/">
-          <Submit /> {/* home page */}
-        </Route>
-        <Route>
-          <Submit /> {/* page not found */}
-        </Route>
-      </Switch>
+      <div className='body'>
+        <Paper className='paper' elevation={5}>
+          <Switch>
+            <Route exact path='/submit'>
+              <Submit />
+            </Route>
+            <Route exact path='/login'>
+              <Login />
+            </Route>
+            <Route exact path='/register'>
+              <Register />
+            </Route>
+            <Route exact path='/'>
+              <Submit /> {/* home page */}
+            </Route>
+            <Route>
+              <Submit /> {/* page not found */}
+            </Route>
+          </Switch>
+        </Paper>
+      </div>
     </BrowserRouter>
   )
 }

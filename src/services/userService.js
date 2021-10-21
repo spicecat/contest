@@ -6,7 +6,7 @@ import { serverUrl } from '../var.js'
 const baseUrl = serverUrl + '/user'
 const cookies = new Cookies()
 
-export const register = async ({ username, name, email, password }) => {
+export const register = async({ username, name, email, password }) => {
     const url = baseUrl + '/register'
     try {
         const auth = Buffer.from(username + ':' + password, 'ascii').toString('base64')
@@ -15,10 +15,10 @@ export const register = async ({ username, name, email, password }) => {
         cookies.set('token', token)
         cookies.set('username', username)
         return response.statusCode
-    } catch (err) { return err.status }
+    } catch ({ crossDomain, status }) { return crossDomain ? 521 : status }
 }
 
-export const login = async ({ username, password }) => {
+export const login = async({ username, password }) => {
     const url = baseUrl + '/login'
     try {
         const auth = Buffer.from(username + ':' + password, 'ascii').toString('base64')
@@ -27,7 +27,7 @@ export const login = async ({ username, password }) => {
         cookies.set('token', token)
         cookies.set('username', username)
         return response.statusCode
-    } catch (err) { return err.status } // remove
+    } catch ({ crossDomain, status }) { return crossDomain ? 521 : status }
 }
 
 export const logout = () => {

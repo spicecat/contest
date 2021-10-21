@@ -1,13 +1,32 @@
-import React from 'react'
+import { useState, useEffect } from 'react'
+
 import { login } from '../services/userService'
 import { loginSchema } from '../services/schemas'
 
 import Form from '../components/Form'
-import PaperContent from '../components/Paper'
-
+import Alert from '../components/Alert'
 
 export default function Login() {
+    const [statusCode, setStatusCode] = useState(100)
+
+    useEffect(() => {
+        if ([201, 202].includes(statusCode)) window.location.href = '/'
+    }, [statusCode])
+
     return (
-        <PaperContent Component={Form} name='Login' action={login} schema={loginSchema} />
+        <>
+            <Alert statusCode={statusCode} />
+            <br />
+            <Form
+                name='Login'
+                action={async values => {
+                    setStatusCode(102)
+                    setStatusCode(await login(values))
+                }}
+                schema={loginSchema}
+                rememberMe={false}
+            />
+        </>
     )
+
 }
