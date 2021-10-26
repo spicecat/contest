@@ -11,3 +11,7 @@ div.body {
 .paper {
     padding: 15px;
 }
+
+img {
+    max-width: 100%;
+}

@@ -5,7 +5,7 @@ import Cookies from 'universal-cookie'
 
 import './styles/App.css'
 
-import { Navbar, Register, Login, Contests, Submit } from './containers'
+import { Navbar, Register, Login, Contests, Submit, NotFound } from './containers'
 
 const cookies = new Cookies()
 
@@ -30,7 +30,7 @@ export default function App() {
             <Contests />
           </Route>
           <Route>
-            <Submit /> {/* page not found */}
+            <NotFound />
           </Route>
         </Switch>
       </Paper>
