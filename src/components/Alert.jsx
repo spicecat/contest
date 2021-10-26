@@ -26,7 +26,5 @@ export default function Alert({ msg = 'Error', type = 'error', statusCode }) {
         }
     }, [statusCode])
 
-    return (
-        open && <MuiAlert onClose={() => { setOpen(false) }} elevation={6} severity={severity}>{message}</MuiAlert>
-    )
+    return open && <MuiAlert onClose={() => { setOpen(false) }} elevation={6} severity={severity}>{message}</MuiAlert>
 }

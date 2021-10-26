@@ -14,39 +14,37 @@ export default function Form({ name, action, schema }) {
         onSubmit: async values => action(values)
     })
 
-    return (
-        <form onSubmit={formik.handleSubmit}>
-            <Typography>{name}</Typography>
-            <div>
-                {fields.map(field =>
-                    <TextField
-                        key={field}
-                        fullWidth
-                        id={field}
-                        name={field}
-                        label={upperFirst(field.replace(/_/g, ' '))}
-                        type={field.includes('password') && !(field === 'password' && showPassword) && 'password'}
-                        value={formik.values[field]}
-                        onChange={formik.handleChange}
-                        error={Boolean(formik.touched[field] && formik.errors[field])}
-                        helperText={formik.touched[field] && formik.errors[field]}
-                        {...field === 'password' && {
-                            InputProps: {
-                                endAdornment: (
-                                    <InputAdornment position='end'>
-                                        <Tooltip title={`${showPassword ? 'Hide' : 'Show'} password`} placement='left'>
-                                            <IconButton onClick={() => setShowPassword(!showPassword)}>
-                                                {showPassword ? <VisibilityIcon /> : <VisibilityOffIcon />}
-                                            </IconButton>
-                                        </Tooltip>
-                                    </InputAdornment>)
-                            }
-                        }}
-                    />
-                )}
-            </div>
-            <br />
-            <Button type='submit' variant='contained' color='primary'>{name}</Button>
-        </form>
-    )
+    return <form onSubmit={formik.handleSubmit}>
+        <Typography>{name}</Typography>
+        <div>
+            {fields.map(field =>
+                <TextField
+                    key={field}
+                    fullWidth
+                    id={field}
+                    name={field}
+                    label={upperFirst(field.replace(/_/g, ' '))}
+                    type={field.includes('password') && !(field === 'password' && showPassword) && 'password'}
+                    value={formik.values[field]}
+                    onChange={formik.handleChange}
+                    error={Boolean(formik.touched[field] && formik.errors[field])}
+                    helperText={formik.touched[field] && formik.errors[field]}
+                    {...field === 'password' && {
+                        InputProps: {
+                            endAdornment: (
+                                <InputAdornment position='end'>
+                                    <Tooltip title={`${showPassword ? 'Hide' : 'Show'} password`} placement='left'>
+                                        <IconButton onClick={() => setShowPassword(!showPassword)}>
+                                            {showPassword ? <VisibilityIcon /> : <VisibilityOffIcon />}
+                                        </IconButton>
+                                    </Tooltip>
+                                </InputAdornment>)
+                        }
+                    }}
+                />
+            )}
+        </div>
+        <br />
+        <Button type='submit' variant='contained' color='primary'>{name}</Button>
+    </form>
 }

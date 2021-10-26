@@ -10,10 +10,8 @@ export default function Submit() {
         upload(file)
     }
 
-    return (
-        <>
-            <input type="file" name="files[]" onChange={handleFile} />
-            <button onClick={handleSubmit}>Submit</button>
-        </>
-    )
+    return <>
+        <input type="file" name="files[]" onChange={handleFile} />
+        <button onClick={handleSubmit}>Submit</button>
+    </>
 }

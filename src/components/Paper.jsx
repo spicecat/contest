@@ -31,11 +31,9 @@ export default function PaperContent({ Component, ...props }) {
     useEffect(() => {
         if (!open) setStatusCode(100)
     }, [open])
-    return (
-        <Paper className={classes.login}>
-            <Alert open={open} type='error' msg={msg} setOpen={setOpen} />
-            <br />
-            <Component {...props} action={async values => { setStatusCode(await props.action(values)) }} />
-        </Paper>
-    )
+    return <Paper className={classes.login}>
+        <Alert open={open} type='error' msg={msg} setOpen={setOpen} />
+        <br />
+        <Component {...props} action={async values => { setStatusCode(await props.action(values)) }} />
+    </Paper>
 }

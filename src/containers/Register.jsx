@@ -10,19 +10,17 @@ export default function Register() {
         if ([201, 202].includes(statusCode)) window.location.href = '/'
     }, [statusCode])
 
-    return (
-        <>
-            <Alert statusCode={statusCode} />
-            <br />
-            <Form
-                name='Register'
-                action={async values => {
-                    setStatusCode(102)
-                    setStatusCode(await register(values))
-                }}
-                schema={registerSchema}
-                rememberMe={true}
-            />
-        </>
-    )
+    return <>
+        <Alert statusCode={statusCode} />
+        <br />
+        <Form
+            name='Register'
+            action={async values => {
+                setStatusCode(102)
+                setStatusCode(await register(values))
+            }}
+            schema={registerSchema}
+            rememberMe={true}
+        />
+    </>
 }

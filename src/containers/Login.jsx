@@ -13,8 +13,7 @@ export default function Login() {
         if ([201, 202].includes(statusCode)) window.location.href = '/'
     }, [statusCode])
 
-    return (
-        <>
+    return <>
             <Alert statusCode={statusCode} />
             <br />
             <Form
@@ -27,6 +26,4 @@ export default function Login() {
                 rememberMe={false}
             />
         </>
-    )
-
 }
