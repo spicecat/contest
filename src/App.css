@@ -8,10 +8,18 @@ div.body {
     margin: 20px;
 }
 
+img {
+    max-width: 100%;
+}
+
 .paper {
     padding: 15px;
 }
 
-img {
-    max-width: 100%;
+.menu-button {
+    margin-right: 20px;
+}
+
+.user-control {
+    margin-left: auto;
 }

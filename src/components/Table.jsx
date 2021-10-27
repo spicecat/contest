@@ -1,8 +1,8 @@
 import { useState, useEffect } from 'react'
 import { Table, TableHead, TableBody, TableRow, TableSortLabel, TableCell } from '@material-ui/core'
 
-export default function ContestTable({ fields, data=[] }) {
-    const [orderedMemes, setOrderedMemes] = useState(data)
+export default function ContestTable({ data = [], fields = Object.keys(data[0] || {}), component = item => item }) {
+    const [orderedData, setOrderedData] = useState(data)
 
     const [order, setOrder] = useState('desc')
     const [orderBy, setOrderBy] = useState(fields[0])
@@ -18,7 +18,7 @@ export default function ContestTable({ fields, data=[] }) {
         const compare = (a, b) => a > b ? 1 : -1
         arr.sort((a, b) => type === 'string' ? compare(a[ordBy].toUpperCase(), b[ordBy].toUpperCase()) : compare(a[ordBy], b[ordBy]))
         if (ord === 'desc') arr.reverse()
-        setOrderedMemes(arr)
+        setOrderedData(arr)
     }
 
     useEffect(sort, [data, order, orderBy])
@@ -26,25 +26,26 @@ export default function ContestTable({ fields, data=[] }) {
     return <Table size='small'>
         <TableHead>
             <TableRow>
-                {fields.map(headCell => (
+                {fields.map(field => (
                     <TableCell
-                        key={headCell.prop}
+                        key={field}
                         padding='none'
-                        sortDirection={orderBy === headCell.prop && order}
+                        sortDirection={orderBy === field && order}
                     >
                         <TableSortLabel
-                            active={orderBy === headCell.prop}
-                            direction={orderBy === headCell.prop ? order : 'asc'}
-                            onClick={event => changeOrder(event, headCell.prop)}
+                            active={orderBy === field}
+                            direction={orderBy === field ? order : 'asc'}
+                            onClick={event => changeOrder(event, field)}
                         >
-                            {headCell.name}
+                            {field}
                         </TableSortLabel>
                     </TableCell>
                 ))}
             </TableRow>
         </TableHead>
         <TableBody>
-            {orderedMemes.map(item => <div>{item}</div>)}
+            {orderedData.map(item => JSON.stringify(item))}
+            {/* {orderedData.map(item => <div>{component(item)}</div>)} */}
         </TableBody>
-    </Table>
+    </Table >
 }

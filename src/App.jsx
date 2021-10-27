@@ -3,9 +3,9 @@ import { BrowserRouter, Switch, Route } from 'react-router-dom'
 import { Paper } from '@material-ui/core'
 import Cookies from 'universal-cookie'
 
-import './styles/App.css'
+import './App.css'
 
-import { Navbar, Register, Login, Contests, Submit, NotFound } from './containers'
+import { Navbar, Register, Login, Contests, Contest, Submit, NotFound } from './containers'
 
 const cookies = new Cookies()
 
@@ -17,21 +17,12 @@ export default function App() {
     <div className='body'>
       <Paper className='paper' elevation={5}>
         <Switch>
-          <Route exact path='/register'>
-            <Register />
-          </Route>
-          <Route exact path='/login'>
-            <Login />
-          </Route>
-          <Route exact path='/submit'>
-            <Submit />
-          </Route>
-          <Route exact path='/'>
-            <Contests />
-          </Route>
-          <Route>
-            <NotFound />
-          </Route>
+          <Route exact path='/register' component={Register} />
+          <Route exact path='/login' component={Login} />
+          <Route exact path={['/', '/contest']} component={Contests} />
+          <Route exact path='/contest/:contest' component={Contest} />
+          <Route exact path='/submit' component={Submit} />
+          <Route component={NotFound} />
         </Switch>
       </Paper>
     </div>

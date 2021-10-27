@@ -1,8 +1,7 @@
 import { useState, useEffect } from 'react'
 import { register } from '../services/userService'
 import { registerSchema } from '../services/schemas'
-import Form from '../components/Form'
-import Alert from '../components/Alert'
+import { Alert, Form } from '../components'
 export default function Register() {
     const [statusCode, setStatusCode] = useState(100)
 
