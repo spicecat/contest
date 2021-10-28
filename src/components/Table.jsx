@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react'
-import { Table, TableHead, TableBody, TableRow, TableSortLabel, TableCell } from '@material-ui/core'
+import { Table, TableHead, TableBody, TableCell, TableRow, TableSortLabel } from '@material-ui/core'
 
 export default function ContestTable({ data = [], fields = Object.keys(data[0] || {}), component = item => item }) {
     const [orderedData, setOrderedData] = useState(data)
@@ -44,8 +44,7 @@ export default function ContestTable({ data = [], fields = Object.keys(data[0] |
             </TableRow>
         </TableHead>
         <TableBody>
-            {orderedData.map(item => JSON.stringify(item))}
-            {/* {orderedData.map(item => <div>{component(item)}</div>)} */}
+            {orderedData.map(item => fields.map(field => <TableCell>{component(item[field])}</TableCell>))}
         </TableBody>
     </Table >
 }

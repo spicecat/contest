@@ -15,7 +15,8 @@ export const getContests = async() => {
 export const getContest = async(contest) => {
     try {
         const url = baseUrl
-        const { body: info } = await superagent.get(url).query(contest)
+        const { body: info } = await superagent.get(url).query({ contest })
+        console.log(info, 131)
         return info
     } catch (err) {}
 }

@@ -1,22 +1,22 @@
 import { useState, useEffect } from 'react'
-import { Link } from 'react-router-dom'
 
 import { Table } from '../components'
 
 import { getContest } from '../services/contestService'
 
-function ContestTable({ contests }) {
-  return <Table fields={['Contest']} data={contests} component={contest => <Link to={`/contest/${contest}`}> {contest}</ Link>} />
+function ContestTable({ contest = {} }) {
+  console.log(contest)
+  return <Table data={[contest]} />
 }
 
 
 export default function Contests() {
-  const [info, setInfo] = useState()
-  const loadInfo = async () => { setInfo(await getContest()) }
+  const [contest, setContest] = useState()
+  const loadContest = async () => { setContest(await getContest('Test')) }
 
-  useEffect(() => { loadInfo() }, [])
+  useEffect(() => { loadContest() }, [])
 
   return <>
-    <ContestTable info={info} />
+    <ContestTable contest={contest} />
   </>
 }
