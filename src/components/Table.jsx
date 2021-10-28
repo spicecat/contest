@@ -7,6 +7,8 @@ export default function ContestTable({ data = [], fields = Object.keys(data[0] |
     const [order, setOrder] = useState('desc')
     const [orderBy, setOrderBy] = useState(fields[0])
 
+    const capitalize = s => s[0].toUpperCase() + s.substring(1)
+
     const changeOrder = (_, prop) => {
         const newOrder = orderBy === prop && order === 'desc' ? 'asc' : 'desc'
         setOrder(newOrder)
@@ -37,7 +39,7 @@ export default function ContestTable({ data = [], fields = Object.keys(data[0] |
                             direction={orderBy === field ? order : 'asc'}
                             onClick={event => changeOrder(event, field)}
                         >
-                            {field}
+                            {capitalize(field)}
                         </TableSortLabel>
                     </TableCell>
                 ))}
