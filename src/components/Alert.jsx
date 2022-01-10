@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react'
+import React, { useState, useEffect } from 'react'
 import MuiAlert from '@material-ui/lab/Alert'
 
 export default function Alert({ msg = 'Error', type = 'error', statusCode }) {

@@ -1,3 +1,4 @@
+import React from 'react'
 import { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
 
@@ -7,7 +8,7 @@ import { getContests } from '../services/contestService'
 
 
 function ContestsTable({ contests = [] }) {
-  return <Table data={contests.map(contest => ({ contest }))} component={contest => <Link to={`contest/${contest}`}> {contest}</ Link>} />
+  return <Table data={contests.map(contest => ({ contest }))} component={contest => <Link to={`contest/${contest}`}>{contest}</ Link>} />
 }
 
 export default function Contests() {

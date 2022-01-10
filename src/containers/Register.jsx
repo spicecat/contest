@@ -1,3 +1,4 @@
+import React from 'react'
 import { useState, useEffect } from 'react'
 import { register } from '../services/userService'
 import { registerSchema } from '../services/schemas'
