@@ -1,5 +1,4 @@
-import React, { useState } from 'react'
-import { BrowserRouter, Switch, Route } from 'react-router-dom'
+import { BrowserRouter, Route, Routes } from 'react-router-dom'
 import { Paper } from '@material-ui/core'
 import Cookies from 'universal-cookie'
 
@@ -10,20 +9,19 @@ import { Navbar, Register, Login, Contests, Contest, Submit, NotFound } from './
 const cookies = new Cookies()
 
 export default function App() {
-  const [page, setPage] = useState('Submit')
 
   return <BrowserRouter>
-    <Navbar page={page} username={cookies.get('username')} />
+    <Navbar username={cookies.get('username')} />
     <div className='body'>
       <Paper className='paper' elevation={5}>
-        <Switch>
-          <Route exact path='/register' component={Register} />
-          <Route exact path='/login' component={Login} />
-          <Route exact path={['/', '/contest']} component={Contests} />
-          <Route exact path='/contest/:contest' component={Contest} />
-          <Route exact path='/submit' component={Submit} />
-          <Route component={NotFound} />
-        </Switch>
+        <Routes>
+          <Route path='/' element={<Contests />} />
+          <Route path='register' element={<Register />} />
+          <Route path='login' element={<Login />} />
+          <Route path='contest/:contest' element={<Contest />} />
+          <Route path='submit' element={<Submit />} />
+          <Route path='*' element={<NotFound />} />
+        </Routes>
       </Paper>
     </div>
   </BrowserRouter>
