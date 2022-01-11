@@ -1,5 +1,4 @@
-import React from 'react'
-import { useState } from 'react'
+import React, { useState } from 'react'
 import { upperFirst } from 'lodash/string'
 import { useFormik } from 'formik'
 import { Button, IconButton, InputAdornment, TextField, Tooltip, Typography } from '@material-ui/core'
@@ -14,7 +13,6 @@ export default function Form({ name, action, schema }) {
         validationSchema: schema,
         onSubmit: async values => action(values)
     })
-
     return <form onSubmit={formik.handleSubmit}>
         <Typography>{name}</Typography>
         <div>
@@ -25,7 +23,7 @@ export default function Form({ name, action, schema }) {
                     id={field}
                     name={field}
                     label={upperFirst(field.replace(/_/g, ' '))}
-                    type={field.includes('password') && !(field === 'password' && showPassword) && 'password'}
+                    type={field.includes('password') && !(field === 'password' && showPassword) ? 'password' : 'text'}
                     value={formik.values[field]}
                     onChange={formik.handleChange}
                     error={Boolean(formik.touched[field] && formik.errors[field])}

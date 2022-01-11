@@ -15,6 +15,7 @@ export default function App() {
       <Paper className='paper' elevation={5}>
         <Routes>
           <Route path='/' element={<Contests />} />
+          <Route path='contest' element={<Contests />} />
           <Route path='register' element={<Register />} />
           <Route path='login' element={<Login />} />
           <Route path='contest/:contest' element={<Contest />} />
