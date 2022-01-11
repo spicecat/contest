@@ -2,7 +2,6 @@ import React from 'react'
 import { Link } from "react-router-dom"
 import { AppBar, Toolbar, Typography, IconButton, Button } from '@material-ui/core'
 import MenuIcon from '@material-ui/icons/Menu'
-
 import { logout } from '../services/userService'
 
 export default function Navbar({ page, username }) {

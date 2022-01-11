@@ -2,9 +2,7 @@ import React from 'react'
 import { BrowserRouter, Route, Routes } from 'react-router-dom'
 import { Paper } from '@material-ui/core'
 import Cookies from 'universal-cookie'
-
 import './App.css'
-
 import { Navbar, Register, Login, Contests, Contest, Submit, NotFound } from './containers'
 
 const cookies = new Cookies()

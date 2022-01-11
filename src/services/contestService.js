@@ -1,5 +1,4 @@
 import superagent from 'superagent'
-
 import { serverUrl } from '../var.js'
 
 const baseUrl = serverUrl + '/contest'

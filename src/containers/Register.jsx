@@ -1,5 +1,4 @@
-import React from 'react'
-import { useState, useEffect } from 'react'
+import React, { useState, useEffect } from 'react'
 import { register } from '../services/userService'
 import { registerSchema } from '../services/schemas'
 import { Alert, Form } from '../components'
