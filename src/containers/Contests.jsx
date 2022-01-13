@@ -15,6 +15,7 @@ export default function Contests() {
   useEffect(() => { loadContests() }, [])
 
   return <>
+    contests
     <ContestsTable contests={contests} />
   </>
 }

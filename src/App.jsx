@@ -1,28 +1,23 @@
 import React from 'react'
 import { BrowserRouter, Route, Routes } from 'react-router-dom'
-import { Paper } from '@material-ui/core'
-import Cookies from 'universal-cookie'
 import './App.css'
-import { Navbar, Register, Login, Contests, Contest, Submit, NotFound } from './containers'
-
-const cookies = new Cookies()
+import { Layout, Register, Login, Contests, Contest, Problem, Submit, NotFound } from './containers'
 
 export default function App() {
 
   return <BrowserRouter>
-    <Navbar username={cookies.get('username')} />
-    <div className='body'>
-      <Paper className='paper' elevation={5}>
-        <Routes>
-          <Route path='/' element={<Contests />} />
-          <Route path='contest' element={<Contests />} />
-          <Route path='register' element={<Register />} />
-          <Route path='login' element={<Login />} />
-          <Route path='contest/:contest' element={<Contest />} />
-          <Route path='submit' element={<Submit />} />
-          <Route path='*' element={<NotFound />} />
-        </Routes>
-      </Paper>
-    </div>
+    <Routes>
+      <Route path='/' element={<Layout />}>
+        <Route index element={<Contests />} />
+        <Route path='contest' element={<Contests />} />
+        <Route path='contest/:contest' element={<Contest />}>
+          <Route path=':problem' element={<Problem />} />
+        </Route>
+        <Route path='register' element={<Register />} />
+        <Route path='login' element={<Login />} />
+        <Route path='submit' element={<Submit />} />
+        <Route path='*' element={<NotFound />} />
+      </Route>
+    </Routes>
   </BrowserRouter>
 }
