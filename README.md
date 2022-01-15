@@ -1,2 +1,2 @@
 # contest
-React web client for [OpenContest programming contests](https://github.com/LadueCS/OpenContest).
+React web client for [OpenContest](https://github.com/LadueCS/OpenContest) programming contests.
