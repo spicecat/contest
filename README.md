@@ -1,2 +1,2 @@
 # contest
-Frontend for LadueCS programming contests using the [LGP protocol](https://github.com/LadueCS/LGP).
+React web client for [OpenContest programming contests](https://github.com/LadueCS/OpenContest).
