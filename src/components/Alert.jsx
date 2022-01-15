@@ -18,6 +18,7 @@ export default function Alert({ msg = 'Error', type = 'error', statusCode }) {
             setMsg({
                 400: 'Bad Request',
                 401: 'Incorrect username or password',
+                404: 'Incorrect username or password',
                 409: 'Username or email taken',
                 501: 'Not Implemented',
                 521: 'Server Down'

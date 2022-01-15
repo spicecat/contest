@@ -1,3 +1,4 @@
+import { Buffer } from 'buffer'
 import superagent from 'superagent'
 import Cookies from 'universal-cookie'
 import { serverUrl } from '../var.js'
