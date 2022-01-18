@@ -28,7 +28,7 @@ export const login = async ({ username, homeserver, password }) => {
             password: password
         })
         cookies.set('username', username)
-        cookies.set('homeserver', homserver)
+        cookies.set('homeserver', homeserver)
         cookies.set('password', password)
         return response.statusCode
     } catch ({ crossDomain, status }) { return crossDomain ? 521 : status }
