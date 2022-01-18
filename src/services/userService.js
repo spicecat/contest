@@ -5,7 +5,7 @@ const cookies = new Cookies()
 
 export const register = async ({ name, email, username, homeserver, password }) => {
     try {
-        const response = await superagent.post(homeserver, {
+        const response = await superagent.post('https://' + homeserver, {
             type: 'register',
             name: name,
             email: email,
@@ -21,7 +21,7 @@ export const register = async ({ name, email, username, homeserver, password }) 
 
 export const login = async ({ username, homeserver, password }) => {
     try {
-        const response = await superagent.post(homeserver, {
+        const response = await superagent.post('https://' + homeserver, {
             type: 'authenticate',
             username: username,
             server: '',
