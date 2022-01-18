@@ -1,1 +1,1 @@
-export const url = 'https://contest.exozy.me:443'
+export const url = 'https://contest.exozy.me'

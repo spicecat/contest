@@ -1,12 +1,13 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useNavigate } from 'react'
 import { register } from '../services/userService'
 import { registerSchema } from '../services/schemas'
 import { Alert, Form } from '../components'
 export default function Register() {
+    const navigate = useNavigate()
     const [statusCode, setStatusCode] = useState(100)
 
     useEffect(() => {
-        if ([201, 202].includes(statusCode)) window.location.href = '/'
+        if ([201, 202].includes(statusCode)) navigate('/')
     }, [statusCode])
 
     return <>

@@ -4,7 +4,7 @@ import { url } from '../var.js'
 
 const cookies = new Cookies()
 
-export const register = async({ username, name, email, password }) => {
+export const register = async ({ username, name, email, password }) => {
     try {
         const response = await superagent.post(url, {
             type: 'register',
@@ -18,8 +18,9 @@ export const register = async({ username, name, email, password }) => {
     } catch ({ crossDomain, status }) { return crossDomain ? 521 : status }
 }
 
-export const login = async({ username, password }) => {
+export const login = async ({ username, password }) => {
     try {
+        console.log(await superagent.post(url, { type: 'about' }))
         const response = await superagent.post(url, {
             type: 'authenticate',
             username,
