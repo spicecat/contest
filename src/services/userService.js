@@ -8,10 +8,10 @@ export const register = async ({ username, name, email, password }) => {
     try {
         const response = await superagent.post(url, {
             type: 'register',
-            name,
-            email,
-            username,
-            password
+            name: name,
+            email: email,
+            username: username,
+            password: password
         })
         cookies.set('password', password)
         return response.statusCode
@@ -23,8 +23,9 @@ export const login = async ({ username, password }) => {
         console.log(await superagent.post(url, { type: 'about' }))
         const response = await superagent.post(url, {
             type: 'authenticate',
-            username,
-            password
+            username: username,
+            server: 'contest.exozy.me',
+            password: password
         })
         cookies.set('password', password)
         return response.statusCode
