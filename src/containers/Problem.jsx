@@ -3,7 +3,6 @@ import { Link } from 'react-router-dom'
 import { Document, Page, pdfjs } from 'react-pdf'
 import { Table } from '../components'
 import { getContest, getProblems } from '../services/contestService'
-import file from '../assets/problems.pdf'
 
 pdfjs.GlobalWorkerOptions.workerSrc = `//cdnjs.cloudflare.com/ajax/libs/pdf.js/${pdfjs.version}/pdf.worker.js`
 function ContestTable({ contest = {} }) {
@@ -31,7 +30,6 @@ export default function Contests(props) {
     prob
     <div>
       <Document
-        file={file}
         onLoadSuccess={onDocumentLoadSuccess}
       >
         <Page pageNumber={2} />
