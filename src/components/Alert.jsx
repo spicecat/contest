@@ -5,11 +5,11 @@ export default function Alert({ msg = 'Error', type = 'error', statusCode }) {
     const [open, setOpen] = useState(false)
     const [severity, setType] = useState(type)
     const [message, setMsg] = useState(msg)
-
+    
     useEffect(() => { // update message
         if (statusCode === 102) return
         else if (statusCode === 100) setOpen(false)
-        else if ([201, 202].includes(statusCode)) {
+        else if ([200, 201, 202].includes(statusCode)) {
             setType('success')
             setMsg('Success!')
         }
@@ -18,6 +18,7 @@ export default function Alert({ msg = 'Error', type = 'error', statusCode }) {
             setMsg({
                 400: 'Bad Request',
                 401: 'Incorrect username or password',
+                403: 'Incorrect username or password',
                 404: 'Incorrect username or password',
                 409: 'Username or email taken',
                 501: 'Not Implemented',
