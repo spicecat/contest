@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react'
+import React, { useContext, useState, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { UserContext } from '../contexts'
 import { loginSchema } from '../services/schemas'
@@ -12,9 +12,9 @@ export default function Login() {
     const handleLogin = async value => {
         setAlertCode(102)
         await userDispatch({ type: 'login', value })
-        setAlertCode(statusCode)
         if ([201, 202].includes(statusCode)) navigate('/')
     }
+    useEffect(() => setAlertCode(statusCode), [statusCode])
 
     return <>
         <Alert alertCode={alertCode} />
