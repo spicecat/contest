@@ -3,7 +3,7 @@ import Cookies from 'universal-cookie'
 
 const cookies = new Cookies()
 
-export const register = async ({ name, email, username, homeserver, password }) => {
+export const register = async ({ homeserver, name, email, username, password }) => {
     try {
         const response = await superagent.post('https://' + homeserver, {
             type: 'register',
@@ -15,12 +15,13 @@ export const register = async ({ name, email, username, homeserver, password }) 
         cookies.set('username', username)
         cookies.set('homeserver', homeserver)
         cookies.set('password', password)
-        return response.statusCode
-    } catch ({ crossDomain, status }) { return crossDomain ? 521 : status }
+        return { homeserver, username, statusCode: response.statusCode }
+    } catch ({ crossDomain, status }) { return { statusCode: crossDomain ? 521 : status } }
 }
 
-export const login = async ({ username, homeserver, password }) => {
+export const login = async ({ homeserver, username, password }) => {
     try {
+        console.log(homeserver, username, password)
         const response = await superagent.post('https://' + homeserver, {
             type: 'authenticate',
             username: username,
@@ -30,8 +31,8 @@ export const login = async ({ username, homeserver, password }) => {
         cookies.set('username', username)
         cookies.set('homeserver', homeserver)
         cookies.set('password', password)
-        return response.statusCode
-    } catch ({ crossDomain, status }) { return crossDomain ? 521 : status }
+        return { homeserver, username, statusCode: response.statusCode }
+    } catch ({ crossDomain, status }) { return { statusCode: crossDomain ? 521 : status } }
 }
 
 export const logout = () => {

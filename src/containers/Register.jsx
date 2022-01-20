@@ -1,25 +1,27 @@
-import React, { useState, useEffect, } from 'react'
+import React, { useContext, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
-import { register } from '../services/userService'
+import { UserContext } from '../contexts'
 import { registerSchema } from '../services/schemas'
 import { Alert, Form } from '../components'
+
 export default function Register() {
     const navigate = useNavigate()
-    const [statusCode, setStatusCode] = useState(100)
+    const [{ statusCode }, userDispatch] = useContext(UserContext)
+    const [alertCode, setAlertCode] = useState(100)
 
-    useEffect(() => {
+    const handleRegister = async value => {
+        setAlertCode(102)
+        await userDispatch({ type: 'register', value })
+        setAlertCode(statusCode)
         if ([201, 202].includes(statusCode)) navigate('/')
-    }, [statusCode])
+    }
 
     return <>
-        <Alert statusCode={statusCode} />
+        <Alert alertCode={alertCode} />
         <br />
         <Form
             name='Register'
-            action={async values => {
-                setStatusCode(102)
-                setStatusCode(await register(values))
-            }}
+            action={handleRegister}
             schema={registerSchema}
             rememberMe={true}
         />

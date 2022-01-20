@@ -18,7 +18,7 @@ export const registerSchema = object({
 })
 
 export const loginSchema = object({
-    username: string().required('Username is required'),
     homeserver: string().required('Homeserver is required'),
+    username: string().required('Username is required'),
     password: string().required('Password is required')
 })

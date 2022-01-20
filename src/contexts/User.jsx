@@ -1,9 +1,12 @@
-export const initState = {}
+import { register, login } from '../services/userService'
 
-export const reducer = (state, { type, value }) => {
+export const userReducer = async (state, { type, value }) => {
   switch (type) {
-    case 'set': return value
-    case 'reset': return initState
+    case 'register': return register(value)
+    case 'login': return login(value)
+    case 'reset': return userInitState
     default: return state
   }
 }
+
+export const userInitState = {}

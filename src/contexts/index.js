@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { userReducer, userInitialState } from './reducer'
+import { userReducer, userInitState } from './User'
 
 function useAsyncReducer(reducer, initState) {
     const [state, setState] = useState(initState),
@@ -8,12 +8,12 @@ function useAsyncReducer(reducer, initState) {
 }
 
 export const UserContext = React.createContext({
-    state: userInitialState,
+    state: userInitState,
     dispatch: () => null
 })
 
 export const UserProvider = ({ children }) => {
-    const [state, dispatch] = useAsyncReducer(userReducer, userInitialState)
+    const [state, dispatch] = useAsyncReducer(userReducer, userInitState)
 
     return (
         <UserContext.Provider value={[state, dispatch]}>
