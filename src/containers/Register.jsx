@@ -15,6 +15,7 @@ export default function Register() {
         if ([201, 202].includes(statusCode)) navigate('/')
     }
     useEffect(() => setAlertCode(statusCode), [statusCode])
+    useEffect(() => setAlertCode(100), [])
 
     return <>
         <Alert alertCode={alertCode} />

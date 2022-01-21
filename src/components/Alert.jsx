@@ -8,7 +8,7 @@ export default function Alert({ msg = 'Error', type = 'error', alertCode }) {
 
     useEffect(() => { // update message
         if (alertCode === 102) return
-        else if (alertCode === 100) setOpen(false)
+        else if (alertCode === 100 || !alertCode) setOpen(false)
         else if ([200, 201, 202].includes(alertCode)) {
             setType('success')
             setMsg('Success!')

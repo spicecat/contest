@@ -9,4 +9,4 @@ export const userReducer = async (state, { type, value }) => {
   }
 }
 
-export const userInitState = { statusCode: 100 }
+export const userInitState = { }

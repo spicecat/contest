@@ -5,7 +5,7 @@ import { Layout, Register, Login, Contests, Contest, Problem, Submit, NotFound }
 
 export default function App() {
 
-  return <BrowserRouter basename='OpenContest-Web'>
+  return <BrowserRouter basename='OpenContest-Web'> {/*subdomain*/}
     <Routes>
       <Route path='/' element={<Layout />}>
         <Route index element={<Contests />} />
