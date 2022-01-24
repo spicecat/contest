@@ -1,6 +1,6 @@
 {
-  "short_name": "Contest",
-  "name": "LadueCS Contest",
+  "short_name": "OpenContest Web",
+  "name": "OpenContest Web Client",
   "icons": [
     {
       "src": "favicon.ico",
