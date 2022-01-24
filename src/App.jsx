@@ -3,7 +3,7 @@ import { BrowserRouter, Route, Routes } from 'react-router-dom'
 import './App.css'
 import { Layout, Register, Login, Contests, Contest, Problem, Submit, NotFound } from './containers'
 
-export default function App() {
+export default function App() { // handle routing
 
   return <BrowserRouter basename='OpenContest-Web'> {/*subdomain*/}
     <Routes>
