@@ -12,10 +12,10 @@ export default function Contests() {
   const [contests, setContests] = useState()
   const loadContests = async () => { setContests(await getContests()) }
 
-  useEffect(() => { loadContests() }, [])
+  // useEffect(() => { loadContests() }, [])
 
   return <>
     contests
-    <ContestsTable contests={contests} />
+    {/* <ContestsTable contests={contests} /> */}
   </>
 }

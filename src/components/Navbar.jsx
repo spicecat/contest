@@ -1,10 +1,13 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import { Link } from "react-router-dom"
 import { AppBar, Toolbar, Typography, IconButton, Button } from '@material-ui/core'
 import MenuIcon from '@material-ui/icons/Menu'
+import { UserContext } from '../contexts'
 import { logout } from '../services/userService'
 
-export default function Navbar({ page, username }) {
+export default function Navbar({ page }) {
+    const [{ username }, userDispatch] = useContext(UserContext)
+
     return <AppBar position='static'>
         <Toolbar variant='dense'>
             <Link to='/'>

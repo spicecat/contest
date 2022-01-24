@@ -1,11 +1,12 @@
 import React from 'react'
 import { BrowserRouter, Route, Routes } from 'react-router-dom'
+import { basename } from './var'
 import './App.css'
 import { Layout, Register, Login, Contests, Contest, Problem, Submit, NotFound } from './containers'
 
 export default function App() { // handle routing
 
-  return <BrowserRouter basename='OpenContest-Web'> {/*subdomain*/}
+  return <BrowserRouter basename={basename}>
     <Routes>
       <Route path='/' element={<Layout />}>
         <Route index element={<Contests />} />

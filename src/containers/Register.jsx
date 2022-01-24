@@ -12,7 +12,7 @@ export default function Register() {
     const handleRegister = async value => {
         setAlertCode(102)
         await userDispatch({ type: 'register', value })
-        if ([201, 202].includes(statusCode)) navigate('/')
+        if ([200, 201, 202].includes(statusCode)) navigate('/')
     }
     useEffect(() => setAlertCode(statusCode), [statusCode])
     useEffect(() => setAlertCode(100), [])

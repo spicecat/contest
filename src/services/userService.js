@@ -21,7 +21,6 @@ export const register = async ({ homeserver, name, email, username, password }) 
 
 export const login = async ({ homeserver, username, password }) => {
     try {
-        console.log(homeserver, username, password)
         const response = await superagent.post('https://' + homeserver, {
             type: 'authenticate',
             username: username,
