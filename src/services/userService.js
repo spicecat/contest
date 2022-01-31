@@ -39,5 +39,4 @@ export const logout = () => {
     cookies.remove('username')
     cookies.remove('homeserver')
     cookies.remove('password')
-    window.location.href = basename
 }
