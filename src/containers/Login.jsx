@@ -7,15 +7,17 @@ import { Alert, Form } from '../components'
 export default function Login() {
     const navigate = useNavigate()
     const [{ statusCode }, userDispatch] = useContext(UserContext)
-    const [alertCode, setAlertCode] = useState()
+    const [alertCode, setAlertCode] = useState(100)
 
     const handleLogin = async value => {
         setAlertCode(102)
         await userDispatch({ type: 'login', value })
+    }
+    const updateAlertCode = () => {
+        setAlertCode(statusCode)
         if ([200, 201, 202].includes(statusCode)) navigate('/')
     }
-    useEffect(() => setAlertCode(statusCode), [statusCode])
-    useEffect(() => setAlertCode(100), [])
+    useEffect(updateAlertCode, [navigate, statusCode])
 
     return <>
         <Alert alertCode={alertCode} />
