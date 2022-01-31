@@ -1,4 +1,5 @@
-import React, { useState } from 'react'
+import React, { useState, createContext } from 'react'
+import { contestReducer, contestInitState } from './Contest'
 import { userReducer, userInitState } from './User'
 
 function useAsyncReducer(reducer, initState) {
@@ -7,7 +8,22 @@ function useAsyncReducer(reducer, initState) {
     return [state, dispatchState];
 }
 
-export const UserContext = React.createContext({
+export const ContestContext = createContext({
+    state: contestInitState,
+    dispatch: () => null
+})
+
+export const ContestProvider = ({ children }) => {
+    const [state, dispatch] = useAsyncReducer(contestReducer, contestInitState)
+
+    return (
+        <ContestContext.Provider value={[state, dispatch]}>
+            {children}
+        </ContestContext.Provider>
+    )
+}
+
+export const UserContext = createContext({
     state: userInitState,
     dispatch: () => null
 })

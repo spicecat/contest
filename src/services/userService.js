@@ -1,11 +1,12 @@
 import superagent from 'superagent'
 import Cookies from 'universal-cookie'
+import { basename } from '../var'
 
 const cookies = new Cookies()
 
-export const register = async ({ homeserver, name, email, username, password }) => {
+export const register = async({ homeserver, name, email, username, password }) => {
     try {
-        const response = await superagent.post('https://' + homeserver, {
+        const { statusCode } = await superagent.post('https://' + homeserver, {
             type: 'register',
             name: name,
             email: email,
@@ -15,13 +16,13 @@ export const register = async ({ homeserver, name, email, username, password }) 
         cookies.set('username', username)
         cookies.set('homeserver', homeserver)
         cookies.set('password', password)
-        return { homeserver, username, statusCode: response.statusCode }
+        return { homeserver, username, statusCode }
     } catch ({ crossDomain, status }) { return { statusCode: crossDomain ? 521 : status } }
 }
 
-export const login = async ({ homeserver, username, password }) => {
+export const login = async({ homeserver, username, password }) => {
     try {
-        const response = await superagent.post('https://' + homeserver, {
+        const { statusCode } = await superagent.post('https://' + homeserver, {
             type: 'authenticate',
             username: username,
             server: '',
@@ -30,7 +31,7 @@ export const login = async ({ homeserver, username, password }) => {
         cookies.set('username', username)
         cookies.set('homeserver', homeserver)
         cookies.set('password', password)
-        return { homeserver, username, statusCode: response.statusCode }
+        return { homeserver, username, statusCode }
     } catch ({ crossDomain, status }) { return { statusCode: crossDomain ? 521 : status } }
 }
 
@@ -38,5 +39,4 @@ export const logout = () => {
     cookies.remove('username')
     cookies.remove('homeserver')
     cookies.remove('password')
-    window.location.href = '/'
 }
