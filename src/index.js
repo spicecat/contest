@@ -1,11 +1,13 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
 import App from './App'
-import { UserProvider } from './contexts'
+import { ContestProvider, UserProvider } from './contexts'
 
 ReactDOM.render(
-  <UserProvider>
-    <App />
-  </UserProvider>,
+  <ContestProvider>
+    <UserProvider>
+      <App />
+    </UserProvider>
+  </ContestProvider>,
   document.getElementById('root')
 );
