@@ -11,7 +11,7 @@ export default function Form({ name, action, schema }) {
     const formik = useFormik({
         initialValues: fields.reduce((o, i) => ({ ...o, [i]: "" }), {}),
         validationSchema: schema,
-        onSubmit: async values => action(values)
+        onSubmit: action
     })
     return <form onSubmit={formik.handleSubmit}>
         <Typography>{name}</Typography>

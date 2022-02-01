@@ -1,12 +1,12 @@
 import { object, string, ref } from 'yup'
 
-const yupString = (name, min = 0, max = 1024) => string()
+const yupString = (name, min = -1, max = Infinity) => string()
     .required(`${name} is required`)
     .min(min, `${name} should be at least ${min} characters`)
     .max(max, `${name} should be at most ${max} characters`)
 
 export const contestSchema = object({
-    homeserver: string().required('Homeserver is required'),
+    homeserver: yupString('Homeserver'),
     contest: string()
 })
 
@@ -23,7 +23,7 @@ export const registerSchema = object({
 })
 
 export const loginSchema = object({
-    homeserver: string().required('Homeserver is required'),
-    username: string().required('Username is required'),
-    password: string().required('Password is required')
+    homeserver: yupString('Homeserver'),
+    username: yupString('Username'),
+    password: yupString('Password')
 })
