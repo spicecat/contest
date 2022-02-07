@@ -1,7 +1,7 @@
 import React, { useContext } from 'react'
 import { Link } from 'react-router-dom'
 import { ContestContext } from '../contexts'
-import { contestSchema } from '../services/schemas'
+import { contestSchema as schema } from '../services/schemas'
 import { AlertForm, Table } from '../components'
 
 
@@ -21,7 +21,7 @@ export default function Contests() {
       name='Contests'
       action={loadContests}
       statusCode={statusCode}
-      schema={contestSchema}
+      schema={schema}
     />
     <ContestsTable contests={contests} />
   </>
