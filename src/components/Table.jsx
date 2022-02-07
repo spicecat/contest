@@ -2,7 +2,7 @@ import React from 'react'
 import { useState, useEffect } from 'react'
 import { Table, TableHead, TableBody, TableCell, TableRow, TableSortLabel } from '@material-ui/core'
 
-export default function ContestTable({ data = [], fields = Object.keys(data[0] || {}), component = item => item }) {
+export default function ContestTable({ data = [], fields = Object.keys(data[0] || {}), component }) {
     const [orderedData, setOrderedData] = useState(data)
 
     const [order, setOrder] = useState('desc')

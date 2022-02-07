@@ -1,7 +1,8 @@
-import React, { useState, useEffect } from 'react'
+import React, { useContext } from 'react'
 import { Link } from 'react-router-dom'
-import { Table } from '../components'
-import { getContests } from '../services/contestService'
+import { ContestContext } from '../contexts'
+import { contestSchema as schema } from '../services/schemas'
+import { AlertForm, Table } from '../components'
 
 
 function ContestsTable({ contests = [] }) {
@@ -9,13 +10,19 @@ function ContestsTable({ contests = [] }) {
 }
 
 export default function Contests() {
-  const [contests, setContests] = useState()
-  const loadContests = async () => { setContests(await getContests()) }
+  const [{ contests, statusCode }, contestDispatch] = useContext(ContestContext)
 
-  // useEffect(() => { loadContests() }, [])
+  const loadContests = async value => {
+    await contestDispatch({ type: 'getContests', value })
+  }
 
   return <>
-    contests
-    {/* <ContestsTable contests={contests} /> */}
+    <AlertForm
+      name='Contests'
+      action={loadContests}
+      statusCode={statusCode}
+      schema={schema}
+    />
+    <ContestsTable contests={contests} />
   </>
 }

@@ -1,32 +1,22 @@
-import React, { useContext, useState, useEffect } from 'react'
+import React, { useContext } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { UserContext } from '../contexts'
-import { loginSchema } from '../services/schemas'
-import { Alert, Form } from '../components'
+import { loginSchema as schema } from '../services/schemas'
+import { AlertForm } from '../components'
 
 export default function Login() {
     const navigate = useNavigate()
     const [{ statusCode }, userDispatch] = useContext(UserContext)
-    const [alertCode, setAlertCode] = useState(100)
 
     const handleLogin = async value => {
-        setAlertCode(102)
         await userDispatch({ type: 'login', value })
     }
-    const updateAlertCode = () => {
-        setAlertCode(statusCode)
-        if ([200, 201, 202].includes(statusCode)) navigate('/')
-    }
-    useEffect(updateAlertCode, [navigate, statusCode])
 
-    return <>
-        <Alert alertCode={alertCode} />
-        <br />
-        <Form
-            name='Login'
-            action={handleLogin}
-            schema={loginSchema}
-            rememberMe={false}
-        />
-    </>
+    return <AlertForm
+        name='Login'
+        action={handleLogin}
+        statusCode={statusCode}
+        onSuccess={() => navigate('/')}
+        schema={schema}
+    />
 }

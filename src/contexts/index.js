@@ -4,7 +4,7 @@ import { userReducer, userInitState } from './User'
 
 function useAsyncReducer(reducer, initState) {
     const [state, setState] = useState(initState),
-        dispatchState = async (action) => setState(await reducer(state, action));
+        dispatchState = async action => setState(await reducer(state, action));
     return [state, dispatchState];
 }
 
@@ -15,12 +15,9 @@ export const ContestContext = createContext({
 
 export const ContestProvider = ({ children }) => {
     const [state, dispatch] = useAsyncReducer(contestReducer, contestInitState)
-
-    return (
-        <ContestContext.Provider value={[state, dispatch]}>
-            {children}
-        </ContestContext.Provider>
-    )
+    return <ContestContext.Provider value={[state, dispatch]}>
+        {children}
+    </ContestContext.Provider>
 }
 
 export const UserContext = createContext({
@@ -30,10 +27,7 @@ export const UserContext = createContext({
 
 export const UserProvider = ({ children }) => {
     const [state, dispatch] = useAsyncReducer(userReducer, userInitState)
-
-    return (
-        <UserContext.Provider value={[state, dispatch]}>
-            {children}
-        </UserContext.Provider>
-    )
+    return <UserContext.Provider value={[state, dispatch]}>
+        {children}
+    </UserContext.Provider>
 }
