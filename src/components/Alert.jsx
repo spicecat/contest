@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import MuiAlert from '@material-ui/lab/Alert'
 
-export default function Alert({ msg = 'Error', type = 'error', alertCode }) {
+export default function Alert({ msg = 'Error', type = 'error', onSuccess, alertCode }) {
     const [open, setOpen] = useState(false)
     const [severity, setType] = useState(type)
     const [message, setMsg] = useState(msg)
@@ -9,10 +9,7 @@ export default function Alert({ msg = 'Error', type = 'error', alertCode }) {
     useEffect(() => { // update message
         if (alertCode === 102) return
         else if (alertCode === 100 || !alertCode) setOpen(false)
-        else if ([200, 201, 202].includes(alertCode)) {
-            setType('success')
-            setMsg('Success!')
-        }
+        else if ([200, 201, 202].includes(alertCode)) onSuccess ? onSuccess() : setOpen(false )
         else {
             setType('error')
             setMsg({
@@ -26,7 +23,7 @@ export default function Alert({ msg = 'Error', type = 'error', alertCode }) {
             }[alertCode] || 'Error')
             setOpen(true)
         }
-    }, [alertCode])
+    }, [alertCode, onSuccess])
 
     return open && <MuiAlert onClose={() => { setOpen(false) }} elevation={6} severity={severity}>{message}</MuiAlert>
 }

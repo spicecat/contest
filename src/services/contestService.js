@@ -5,13 +5,11 @@ superagentCache(superagent, null, { preventDuplicateCalls: true })
 
 export const getContests = async ({ homeserver }) => {
     try {
-        const response = await superagent.post('https://' + homeserver, {
+        const { body: { contests }, statusCode } = await superagent.post('https://' + homeserver, {
             type: 'about'
         })
-        return response.body.contests
-    } catch (err) {
-        return []
-    }
+        return { contests, statusCode }
+    } catch ({ crossDomain, status }) { return { statusCode: crossDomain ? 521 : status } }
 }
 
 export const getContest = async ({ homeserver, contest }) => {
