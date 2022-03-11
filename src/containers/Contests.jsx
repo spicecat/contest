@@ -3,10 +3,14 @@ import { Link } from 'react-router-dom'
 import { ContestContext } from '../contexts'
 import { contestSchema as schema } from '../services/schemas'
 import { AlertForm, Table } from '../components'
+import { TableCell } from '@material-ui/core'
 
+function ContestListItem({ contest }) {
+  return <TableCell><Link to={`contest/${contest}`}>{contest}</ Link></TableCell>
+}
 
 function ContestsTable({ contests = [] }) {
-  return <Table data={contests.map(contest => ({ contest }))} component={contest => <Link to={`contest/${contest}`}>{contest}</ Link>} />
+  return <Table data={contests.map(contest => ({ contest }))} component={contest => <ContestListItem contest={contest} />} />
 }
 
 export default function Contests() {

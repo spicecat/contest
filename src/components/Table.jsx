@@ -1,5 +1,4 @@
-import React from 'react'
-import { useState, useEffect } from 'react'
+import React, { useState, useEffect } from 'react'
 import { Table, TableHead, TableBody, TableCell, TableRow, TableSortLabel } from '@material-ui/core'
 
 export default function ContestTable({ data = [], fields = Object.keys(data[0] || {}), component }) {
@@ -47,7 +46,7 @@ export default function ContestTable({ data = [], fields = Object.keys(data[0] |
             </TableRow>
         </TableHead>
         <TableBody>
-            {orderedData.map(item => fields.map(field => <TableCell>{component(item[field])}</TableCell>))}
+            {orderedData.map((item, i) => fields.map(field => <TableRow key={field + i}>{component(item[field])}</TableRow>))}
         </TableBody>
     </Table >
 }
